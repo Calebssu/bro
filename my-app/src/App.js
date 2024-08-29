@@ -7,26 +7,26 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [data, setData] = useState();
-  const insertionSort = (event) => {
+  const insertionSort = async (event) => {
     event.preventDefault();
     let input1 = event.target.insertion1.value;
     let input2 = event.target.insertion2.value;
     let input3 = event.target.insertion3.value;
-    axios.get(`http://localhost:3001/inser/${input1}/${input2}/${input3}`)
+    await axios.get(`https://bro-di5d.onrender.com/inser/${input1}/${input2}/${input3}`)
     .then(res => {
       console.log(res.data)
     })
     event.target.reset();
   };
 
-  const add = (event) => {
+  const add = async (event) => {
     event.preventDefault();
     let input1 = event.target.add1.value;
     let input2 = event.target.add2.value;
     if(input1 < 1 || input1 > 1000 || input2 < 1 || input2 > 1000){
       console.log("Please enter a number between 1 - 1000")
     } else {
-      axios.get(`http://localhost:3001/add/${input1}/${input2}`)
+      await axios.get(`https://bro-di5d.onrender.com/add/${input1}/${input2}`)
       .then(res => {
         console.log(res.data)
       })
@@ -34,11 +34,11 @@ function App() {
     }
   }
 
-  const dayOfProgrammer = (event) => {
+  const dayOfProgrammer = async (event) => {
     event.preventDefault();
     let input1 = event.target.dotp.value;
     if(input1 > 1700 && input1 < 2700){
-      axios.get(`http://localhost:3001/year/${input1}`)
+      await axios.get(`https://bro-di5d.onrender.com/year/${input1}`)
       .then(res => {
         console.log(res.data)
       })
@@ -50,7 +50,7 @@ function App() {
 
   useEffect(() => {
     async function getter(){
-      await axios.get("http://localhost:3001/")
+      await axios.get("https://bro-di5d.onrender.com/")
       .then(res => {
         console.log(res.data)
         setData(res.data)
